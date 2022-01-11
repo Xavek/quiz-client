@@ -1,6 +1,4 @@
-## Frontend Of IQ Quiz App
-
-## React and Tailwind CSS
+# React and Tailwind CSS
 
 This is the Frontend Of IQ Quiz Game Web App.
 User can see Real Time Leaderboard with coressponding Scores.
