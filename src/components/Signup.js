@@ -20,6 +20,7 @@ const Signup = () => {
       })
       .then((res) => {
         console.log(res.data);
+        localStorage.setItem("tokens", res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -36,7 +37,7 @@ const Signup = () => {
         </Link>
       </p>
       <div className="mt-20 grid place-items-center h-64">
-        <label htmlFor="username">Name (4 to 8 characters):</label>
+        <label htmlFor="username">User Name (4 to 8 characters):</label>
         <input
           ref={refUsernameValue}
           type="text"
@@ -49,7 +50,7 @@ const Signup = () => {
 
         <input
           ref={refPassValue}
-          type="text"
+          type="password"
           id="password"
           name="password"
           required

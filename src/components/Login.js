@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const refUsernameValue = useRef(null);
@@ -18,6 +19,7 @@ const Login = () => {
       })
       .then((res) => {
         console.log(res.data);
+        localStorage.setItem("tokens", res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -48,7 +50,7 @@ const Login = () => {
 
           <input
             ref={refPassValue}
-            type="text"
+            type="password"
             id="password"
             name="password"
             required
