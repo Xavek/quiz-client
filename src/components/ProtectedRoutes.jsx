@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
 const userAuth = () => {
-  const user = { isLoggedIn: false };
+  const user = { isLoggedIn: true };
   return user && user.isLoggedIn;
 };
 const ProtectedRoutes = () => {
