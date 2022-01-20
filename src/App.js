@@ -44,7 +44,7 @@ function App() {
         { answerText: "Animal", isCorrect: false },
         { answerText: "Party Animal", isCorrect: false },
         { answerText: "Mundane Animal", isCorrect: false },
-        { answerText: "Social Animal", isCorrect: false },
+        { answerText: "Social Animal", isCorrect: true },
       ],
     },
   ];
@@ -52,8 +52,6 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/signup" element={<Signup />} /> */}
-        {/* <Route path="/login" element={<Login />} /> */}
         <Route path="/header" element={<Header />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />

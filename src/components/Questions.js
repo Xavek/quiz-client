@@ -20,11 +20,11 @@ const Questions = (props) => {
   };
 
   return (
-    <main className="grid place-items-center h-screen bg-zinc-300">
+    <main className="grid place-items-center h-screen bg-zinc-300 font-mono">
       {/* Questions Skeleton */}
       {showScore ? (
         <div>
-          <p className="text-lg font-semibold text-white-800">
+          <p className="text-2xl font-semibold font-mono text-white-800">
             You Scored {score}/{props.userData.length}
           </p>
           <button className="my-2 py-2 px-4  bg-neutral-400 text-white-800 font-semibold text-lg transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 rounded-lg border-l-8 border-zinc-400">
@@ -33,7 +33,7 @@ const Questions = (props) => {
         </div>
       ) : (
         <div>
-          <p className="mb-16 font-mono font-semibold text-2xl">
+          <p className="mb-16  text-2xl font-medium">
             {props.userData[cnt].question}
           </p>
           <div>
@@ -44,7 +44,7 @@ const Questions = (props) => {
                   onClick={() => {
                     handleClick(answer.isCorrect);
                   }}
-                  className="my-4 flex flex-col py-2 px-2 rounded-lg bg-stone-200   active:bg-violet-600    focus:outline-none focus:ring focus:ring-blue-800 border-violet-200 font-semibold text-lg font-mono "
+                  className="my-4 flex flex-col py-2 px-2 rounded-lg bg-stone-200   active:bg-violet-600    focus:outline-none focus:ring focus:ring-blue-800 border-violet-200 font-light text-lg font-mono "
                 >
                   {answer.answerText}
                 </button>

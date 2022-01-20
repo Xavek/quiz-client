@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import userDataValidate from "./UserDataValidator";
+// import axios from "axios";
 
 const Login = () => {
   const refUsernameValue = useRef(null);
@@ -12,23 +13,25 @@ const Login = () => {
     refPassValue.current.value = "";
     refUsernameValue.current.value = "";
     console.log(`${username} and ${password}`);
-    axios
-      .post("http://localhost:5000/iqquiz/api/user/auth", {
-        username,
-        password,
-      })
-      .then((res) => {
-        console.log(res.data);
-        localStorage.setItem("tokens", res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const errorValue = userDataValidate({ username, password });
+    alert(errorValue);
+    //   axios
+    //     .post("http://localhost:5000/iqquiz/api/user/auth", {
+    //       username,
+    //       password,
+    //     })
+    //     .then((res) => {
+    //       console.log(res.data);
+    //       localStorage.setItem("tokens", res.data);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
   };
   return (
     <>
       <>
-        <p className="mt-8 text-center px-2 py-2 text-lg font-semibold font-mono ">
+        <p className="mt-8 text-center px-2 py-2 text-lg font-medium font-mono ">
           Please Login To Play A Game. Or Sign Up First. {""}
           <Link to="/signup">
             <button className="mx-1 my-1 px-2 py-1 bg-slate-400 text-lg font-mono  font-semibold rounded-lg">

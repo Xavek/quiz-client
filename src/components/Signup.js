@@ -1,6 +1,7 @@
-import axios from "axios";
+// import axios from "axios";
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import userDataValidate from "./UserDataValidator";
 
 const Signup = () => {
   const refUsernameValue = useRef(null);
@@ -13,22 +14,25 @@ const Signup = () => {
     refPassValue.current.value = "";
     refUsernameValue.current.value = "";
     console.log(`${username} and ${password}`);
-    axios
-      .post("http://localhost:5000/iqquiz/api/user/auth", {
-        username,
-        password,
-      })
-      .then((res) => {
-        console.log(res.data);
-        localStorage.setItem("tokens", res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const errorValue = userDataValidate({ username, password });
+    alert(errorValue);
+
+    // axios
+    //   .post("http://localhost:5000/iqquiz/api/user/auth", {
+    //     username,
+    //     password,
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     localStorage.setItem("tokens", res.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
   return (
-    <>
-      <p className="mt-8 text-center px-2 py-2 text-lg font-semibold font-mono ">
+    <div>
+      <p className="mt-8 text-center px-2 py-2 text-lg font-medium font-mono ">
         First Time Sign Up To Play a Game. OR{" "}
         <Link to="/login">
           <button className="mx-1 my-1 px-2 py-1 bg-slate-400 text-lg font-mono  font-semibold rounded-lg">
@@ -67,7 +71,7 @@ const Signup = () => {
           Submit
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
