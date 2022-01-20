@@ -1,26 +1,11 @@
 import Header from "./components/Header";
 import Questions from "./components/Questions";
-import axios from "axios";
-import { useEffect, useState } from "react";
-// import Button from "./components/Button";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 
 function App() {
-  // Storing the received Questions and answers in localstorage.
-  // Or i can save the data locally and manipulate the dom. using useEffect hook
-  // Saving the response data into the useState Hook.
-  // const [userData, setUserData] = useState([]);
-  // useEffect(() => {
-  //   axios.get("http://localhost:5000/api/questions").then((res) => {
-  //     const localData = res.data.data;
-  //     console.log("I am localdata", localData);
-  //     setUserData(localData);
-  //     console.log("I am home UserData", userData);
-  //   }, []);
-  // });
   const userData = [
     {
       id: 1,
@@ -70,7 +55,7 @@ function App() {
         {/* <Route path="/signup" element={<Signup />} /> */}
         {/* <Route path="/login" element={<Login />} /> */}
         <Route path="/header" element={<Header />} />
-        <Route path="/" element={<Signup />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoutes />}>
           <Route
