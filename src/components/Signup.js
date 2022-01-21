@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import userDataValidate from "./UserDataValidator";
@@ -15,21 +15,29 @@ const Signup = () => {
     refUsernameValue.current.value = "";
     console.log(`${username} and ${password}`);
     const errorValue = userDataValidate({ username, password });
-    alert(errorValue);
 
-    // axios
-    //   .post("http://localhost:5000/iqquiz/api/user/auth", {
-    //     username,
-    //     password,
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     localStorage.setItem("tokens", res.data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    // I need to redirect the user to question page if everything goes right from backend
+    // Place the global state of user and userData after page refresh that the user is legitt.
+    // Checking whether there is error value or not then only sending the axios post request.
+    if (errorValue) {
+      alert(errorValue);
+    } else {
+      axios
+        .post("http://localhost:4000/userflow/iqquiz/api/user/auth", {
+          username,
+          password,
+        })
+        .then((res) => {
+          console.log(res.data);
+          localStorage.setItem("tokens", res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
+  // In response user must get the JWT Tokens.
+  // Tokens get updated at ContextAPI and then redirect to the question page.
   return (
     <div>
       <p className="mt-8 text-center px-2 py-2 text-lg font-medium font-mono ">
@@ -68,7 +76,7 @@ const Signup = () => {
           onClick={handleSubmit}
           className="my-2 py-2 px-4  bg-slate-400 text-white-800 font-semibold transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 rounded-lg border-l-8 border-zinc-400 text-2xl"
         >
-          Submit
+          Sign Up
         </button>
       </div>
     </div>

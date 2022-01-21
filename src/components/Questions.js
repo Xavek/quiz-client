@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 // contains all the questions and answer options.
 const Questions = (props) => {
@@ -27,9 +28,11 @@ const Questions = (props) => {
           <p className="text-2xl font-semibold font-mono text-white-800">
             You Scored {score}/{props.userData.length}
           </p>
-          <button className="my-2 py-2 px-4  bg-neutral-400 text-white-800 font-semibold text-lg transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 rounded-lg border-l-8 border-zinc-400">
-            See Leader Board
-          </button>
+          <Link to="/leaderboard">
+            <button className="my-2 py-2 px-4  bg-neutral-400 text-white-800 font-semibold text-lg transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 rounded-lg border-l-8 border-zinc-400">
+              See Leader Board
+            </button>
+          </Link>
         </div>
       ) : (
         <div>

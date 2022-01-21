@@ -1,6 +1,6 @@
-import Header from "./components/Header";
+import LeaderBoard from "./components/LeaderBoard";
 import Questions from "./components/Questions";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import ProtectedRoutes from "./components/ProtectedRoutes";
@@ -52,7 +52,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/header" element={<Header />} />
+        <Route path="/" element={<Navigate to="/signup" replace />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoutes />}>
@@ -60,9 +60,9 @@ function App() {
             path="/questions"
             element={<Questions userData={userData} />}
           />
+          <Route path="/leaderboard" element={<LeaderBoard />} />
         </Route>
       </Routes>
-      {/* <Button /> */}
     </BrowserRouter>
   );
 }

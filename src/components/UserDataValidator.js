@@ -6,9 +6,11 @@ const schema = Joi.object({
 
 function userDataValidate(userInputData) {
   console.log(userInputData);
-  const { error } = schema.validate(userInputData);
-  if (error.message) {
-    return error.message;
+  let err = {};
+
+  err = schema.validate(userInputData);
+  if (err.message) {
+    return err.message;
   } else {
     return null;
   }
