@@ -1,13 +1,12 @@
 import axios from "axios";
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
-import { useState } from "react/cjs/react.development";
+import { Link, useNavigate } from "react-router-dom";
 import userDataValidate from "./UserDataValidator";
 
 const Signup = () => {
   const refUsernameValue = useRef(null);
   const refPassValue = useRef(null);
-  const [isUser, setIsUser] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,13 +15,11 @@ const Signup = () => {
     refPassValue.current.value = "";
     refUsernameValue.current.value = "";
     const errorValue = userDataValidate({ username, password });
-
-    // I need to redirect the user to question page if everything goes right from backend
-    // Place the global state of user and userData after page refresh that the user is legitt.
-    // Checking whether there is error value or not then only sending the axios post request.
+    console.log(errorValue);
     if (errorValue) {
       alert(errorValue);
     } else {
+      // Populate the handle Profile Function. or Usage of Context API.
       axios
         .post("http://localhost:5000/userflow/iqquiz/api/user/auth", {
           username,
@@ -31,16 +28,20 @@ const Signup = () => {
         .then((res) => {
           console.log(res.data.acessResponse);
           localStorage.setItem("tokens", res.data.acessResponse);
-          setIsUser(true);
+          navigate("/questions");
         })
         .catch((err) => {
           console.log(err);
         });
     }
   };
-  // In response user must get the JWT Tokens.
-  // Tokens get updated at ContextAPI and then redirect to the question page.
-  // Need to get the tokens in client and manage a global state of that tokens for other req.
+
+  /*
+  1. User Should be redirected to or projected to Questions Page After They got signed Up.
+  2. If Signed up sucessfully then only redirect to questions.
+  
+
+   */
 
   return (
     <div>
@@ -60,6 +61,7 @@ const Signup = () => {
           ref={refUsernameValue}
           type="text"
           id="username"
+          placeholder="Enter Username"
           name="username"
           required
           className="block bg-white w-50 border border-gray-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 text-2xl"
@@ -73,6 +75,7 @@ const Signup = () => {
           type="password"
           id="password"
           name="password"
+          placeholder="Enter Password"
           required
           className="block  bg-white w-50 border border-gray-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 text-2xl"
         ></input>

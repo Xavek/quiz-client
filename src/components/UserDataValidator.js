@@ -1,15 +1,16 @@
 const Joi = require("joi");
 const schema = Joi.object({
   username: Joi.string().alphanum().min(4).max(8).required(),
-  password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
+  password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{4,10}$")).required(),
 });
 
 function userDataValidate(userInputData) {
-  let err = {};
+  console.log(userInputData);
 
-  err = schema.validate(userInputData);
-  if (err.message) {
-    return err.message;
+  const { error } = schema.validate(userInputData);
+  console.log(error);
+  if (error) {
+    return error.message;
   } else {
     return null;
   }

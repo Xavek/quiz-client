@@ -1,5 +1,9 @@
 import React from "react";
-// This is the header cum Navigation of the page.
+/*
+  The score would get here and send to the backend with the username and token.
+  respective token.
+  2. The whole point of leaderboard is to know your scores and 
+ */
 
 const LeaderBoard = () => {
   return (
