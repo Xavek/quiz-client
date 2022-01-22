@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react/cjs/react.development";
 import userDataValidate from "./UserDataValidator";
 
 const Signup = () => {
   const refUsernameValue = useRef(null);
   const refPassValue = useRef(null);
+  const [isUser, setIsUser] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,7 +15,6 @@ const Signup = () => {
     const password = refPassValue.current.value;
     refPassValue.current.value = "";
     refUsernameValue.current.value = "";
-    console.log(`${username} and ${password}`);
     const errorValue = userDataValidate({ username, password });
 
     // I need to redirect the user to question page if everything goes right from backend
@@ -23,13 +24,14 @@ const Signup = () => {
       alert(errorValue);
     } else {
       axios
-        .post("http://localhost:4000/userflow/iqquiz/api/user/auth", {
+        .post("http://localhost:5000/userflow/iqquiz/api/user/auth", {
           username,
           password,
         })
         .then((res) => {
-          console.log(res.data);
-          localStorage.setItem("tokens", res.data);
+          console.log(res.data.acessResponse);
+          localStorage.setItem("tokens", res.data.acessResponse);
+          setIsUser(true);
         })
         .catch((err) => {
           console.log(err);
@@ -38,6 +40,8 @@ const Signup = () => {
   };
   // In response user must get the JWT Tokens.
   // Tokens get updated at ContextAPI and then redirect to the question page.
+  // Need to get the tokens in client and manage a global state of that tokens for other req.
+
   return (
     <div>
       <p className="mt-8 text-center px-2 py-2 text-lg font-medium font-mono ">

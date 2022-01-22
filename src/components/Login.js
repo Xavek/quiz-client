@@ -12,7 +12,6 @@ const Login = () => {
     const password = refPassValue.current.value;
     refPassValue.current.value = "";
     refUsernameValue.current.value = "";
-    console.log(`${username} and ${password}`);
     const errorValue = userDataValidate({ username, password });
     alert(errorValue);
     //   axios
